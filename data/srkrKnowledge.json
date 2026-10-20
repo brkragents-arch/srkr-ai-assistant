@@ -1,0 +1,572 @@
+{
+  "institution": {
+    "name": "Sagi Rama Krishnam Raju Engineering College (Autonomous)",
+    "shortName": "SRKR Engineering College",
+    "acronym": "SRKREC",
+    "established": 1980,
+    "founder": "Sri Sagi Rama Krishnam Raju garu",
+    "type": "Autonomous Private Engineering Institution",
+    "affiliation": "JNTUK (Jawaharlal Nehru Technological University, Kakinada)",
+    "approval": "AICTE, New Delhi",
+    "accreditation": {
+      "naac": "Grade 'A+' with CGPA 3.42",
+      "nba": "All eligible UG courses (CSE, ECE, EEE, ME, CE, IT) accredited by NBA",
+      "autonomy": "Conferred by UGC and JNTUK since 2016-17"
+    },
+    "eapcetCode": "SRKR",
+    "campusArea": "30+ Acres lush green campus",
+    "website": "https://www.srkrec.ac.in",
+    "location": {
+      "address": "SRKR Marg, China Amiram, Bhimavaram, West Godavari District, Andhra Pradesh, India - 534204",
+      "landmarks": "Located 3.5 km from Bhimavaram Town Railway Station and 4 km from Bhimavaram Junction",
+      "gps": "16.5448° N, 81.5212° E"
+    },
+    "leadership": {
+      "director": "Dr. M. Jagapathi Raju",
+      "principal": "Dr. K. V. Murali Krishnam Raju",
+      "deanAcademics": "Dr. V. Chandra Sekhar",
+      "deanPlacements": "Dr. K. R. Satyanarayana",
+      "deanRandD": "Dr. P. A. R. K. Raju",
+      "controllerOfExaminations": "Dr. M. Siva Krishnam Raju"
+    }
+  },
+  "departments": [
+    {
+      "code": "AIDS",
+      "name": "Artificial Intelligence & Data Science",
+      "established": 2020,
+      "hod": "Dr. P. Ravi Kiran Varma",
+      "designation": "Professor & Program Coordinator",
+      "intake": 180,
+      "degrees": [
+        "B.Tech in AI & DS"
+      ],
+      "description": "Specialized curriculum concentrating on deep learning, big data analytics, computer vision, natural language processing, and predictive modeling.",
+      "contactEmail": "hod.aids@srkrec.ac.in",
+      "alternateEmail": "aids@srkrec.ac.in"
+    },
+    {
+      "code": "AIML",
+      "name": "Artificial Intelligence & Machine Learning (CSE-AIML)",
+      "established": 2021,
+      "hod": "Dr. G. N. V. G. Sirisha",
+      "designation": "Associate Professor & Program Coordinator",
+      "intake": 180,
+      "degrees": [
+        "B.Tech in CSE (AI & ML)"
+      ],
+      "description": "Blends foundational computing with automated learning, reinforcement learning, robotics, neural networks, and generative AI architectures.",
+      "contactEmail": "pc.aiml@srkrec.ac.in",
+      "alternateEmail": "aiml@srkrec.ac.in"
+    },
+    {
+      "code": "CIVIL",
+      "name": "Civil Engineering",
+      "established": 1980,
+      "hod": "Dr. G. Sri Bala",
+      "designation": "Associate Professor & Head of the Department",
+      "intake": 120,
+      "degrees": [
+        "B.Tech in Civil Engineering",
+        "M.Tech in Structural Engineering"
+      ],
+      "description": "One of the founding branches offering soil mechanics, environmental engineering, structural testing, and geospatial mapping consultancy.",
+      "contactEmail": "civil@srkrec.ac.in",
+      "alternateEmail": "hod.civil@srkrec.ac.in"
+    },
+    {
+      "code": "CSBS",
+      "name": "Computer Science & Business Systems",
+      "established": 2020,
+      "hod": "Dr. B. V. D. S. Sekhar",
+      "designation": "Professor & Program Coordinator",
+      "intake": 60,
+      "degrees": [
+        "B.Tech in CSBS (Designed with TCS)"
+      ],
+      "description": "Industry-partnered curriculum integrating software engineering, business analytics, financial management, design thinking, and corporate ethics.",
+      "contactEmail": "hod.csbs@srkrec.ac.in",
+      "alternateEmail": "csbs@srkrec.ac.in"
+    },
+    {
+      "code": "CSD",
+      "name": "Computer Science & Design",
+      "established": 2021,
+      "hod": "Dr. M. Suresh Babu",
+      "designation": "Professor & Program Coordinator",
+      "intake": 60,
+      "degrees": [
+        "B.Tech in Computer Science & Design"
+      ],
+      "description": "Blends computer science fundamentals with UI/UX interaction design, multimedia computing, visual design, and human-computer interfaces.",
+      "contactEmail": "hod.csd@srkrec.ac.in",
+      "alternateEmail": "csd@srkrec.ac.in"
+    },
+    {
+      "code": "CSE",
+      "name": "Computer Science & Engineering",
+      "established": 1991,
+      "hod": "Dr. Bh. V. S. Rama Krishnam Raju",
+      "designation": "Professor & Head of the Department",
+      "intake": 420,
+      "degrees": [
+        "B.Tech in CSE",
+        "M.Tech in Computer Science & Technology"
+      ],
+      "description": "Premier department renowned for software engineering, full stack development, cloud computing, high-performance computing, and top placement records.",
+      "contactEmail": "cse@srkrec.ac.in",
+      "alternateEmail": "hod.cse@srkrec.ac.in"
+    },
+    {
+      "code": "CSIT",
+      "name": "Computer Science & Information Technology (CS & IT)",
+      "established": 2021,
+      "hod": "Dr. N. Gopala Krishna Murthy",
+      "designation": "Professor & Head of the Department",
+      "intake": 120,
+      "degrees": [
+        "B.Tech in Computer Science & Information Technology"
+      ],
+      "description": "Integrates rigorous computer science foundations with applied modern information technology, cloud computing, enterprise software architectures, network security, and data handling.",
+      "contactEmail": "csit@srkrec.ac.in",
+      "portal": "https://srkrcsdcsit.in"
+    },
+    {
+      "code": "EEE",
+      "name": "Electrical & Electronics Engineering",
+      "established": 1980,
+      "hod": "Dr. B. Ravi Kumar Varma",
+      "designation": "Professor & Head of the Department",
+      "intake": 120,
+      "degrees": [
+        "B.Tech in EEE",
+        "M.Tech in Power Electronics & Drives"
+      ],
+      "description": "Equipped with power systems simulation, smart grid testbeds, EV technology research, and renewable energy conversion laboratories.",
+      "contactEmail": "eee@srkrec.ac.in",
+      "alternateEmail": "hod.eee@srkrec.ac.in"
+    },
+    {
+      "code": "ECE",
+      "name": "Electronics & Communication Engineering",
+      "established": 1980,
+      "hod": "Dr. S. S. Mohan Reddy",
+      "designation": "Professor & Head of the Department",
+      "intake": 240,
+      "degrees": [
+        "B.Tech in ECE",
+        "M.Tech in Communication Systems"
+      ],
+      "description": "Founding department featuring state-of-the-art VLSI design suites, Embedded Systems lab, IoT testbeds, Signal Processing, and Antenna fabrication.",
+      "contactEmail": "ece@srkrec.ac.in",
+      "alternateEmail": "hod.ece@srkrec.ac.in"
+    },
+    {
+      "code": "CHEM",
+      "name": "Engineering Chemistry",
+      "established": 1980,
+      "hod": "Dr. P. Bhavani",
+      "designation": "Professor & Head of the Department",
+      "intake": 0,
+      "degrees": [
+        "Applied Chemistry Foundation"
+      ],
+      "description": "Covers applied chemistry, environmental science, polymer technology, and materials science research laboratories.",
+      "contactEmail": "chemistry@srkrec.ac.in"
+    },
+    {
+      "code": "PHYSICS",
+      "name": "Engineering Physics",
+      "established": 1980,
+      "hod": "Dr. M. V. Someswara Rao",
+      "designation": "Associate Professor & Head of the Department",
+      "intake": 0,
+      "degrees": [
+        "Applied Physics Foundation"
+      ],
+      "description": "Focuses on optics, semiconductors, electromagnetism, nanotechnology, and advanced physics experimental labs.",
+      "contactEmail": "physics@srkrec.ac.in"
+    },
+    {
+      "code": "ENGLISH",
+      "name": "English & Foreign Languages",
+      "established": 1980,
+      "hod": "Dr. Satish Kumar Nadimpalli",
+      "designation": "Associate Professor & Head of the Department",
+      "intake": 0,
+      "degrees": [
+        "Language Communication Skills"
+      ],
+      "description": "Multimedia interactive language laboratories for phonetics, verbal communication, professional interview skills, and foreign languages.",
+      "contactEmail": "english@srkrec.ac.in"
+    },
+    {
+      "code": "IT",
+      "name": "Information Technology",
+      "established": 1999,
+      "hod": "Dr. P. Ravi Kiran Varma",
+      "designation": "Professor & Head of the Department",
+      "intake": 180,
+      "degrees": [
+        "B.Tech in IT",
+        "M.Tech in Information Technology"
+      ],
+      "description": "Focuses on internet architecture, cybersecurity, network engineering, database systems, mobile computing, and modern web application development.",
+      "contactEmail": "it@srkrec.ac.in",
+      "alternateEmail": "hod.it@srkrec.ac.in"
+    },
+    {
+      "code": "MBA",
+      "name": "Management Studies (MBA)",
+      "established": 2008,
+      "hod": "Dr. M. Siva Krishnam Raju",
+      "designation": "Associate Professor & Head of the Department",
+      "intake": 60,
+      "degrees": [
+        "Master of Business Administration (MBA)"
+      ],
+      "description": "Postgraduate management education in Finance, Human Resources, Marketing, Business Analytics, and Entrepreneurship.",
+      "contactEmail": "hod.bba@srkrec.ac.in",
+      "alternateEmail": "mba@srkrec.ac.in"
+    },
+    {
+      "code": "MATHS",
+      "name": "Mathematics",
+      "established": 1980,
+      "hod": "Dr. G. N. V. Kishore",
+      "designation": "Professor & Head of the Department",
+      "intake": 0,
+      "degrees": [
+        "Applied Mathematics Foundation"
+      ],
+      "description": "Provides mathematical foundation courses including Calculus, Linear Algebra, Probability & Statistics, Discrete Mathematics, and Numerical Methods.",
+      "contactEmail": "maths@srkrec.ac.in"
+    },
+    {
+      "code": "MECH",
+      "name": "Mechanical Engineering",
+      "established": 1980,
+      "hod": "Dr. K. Sita Rama Raju",
+      "designation": "Professor & Head of the Department",
+      "intake": 120,
+      "degrees": [
+        "B.Tech in Mechanical Engineering",
+        "M.Tech in CAD/CAM"
+      ],
+      "description": "Renowned for advanced manufacturing, CAD/CAM/CAE suites, robotics, CNC machinery, 3D printing lab, and SAE India collegiate racing club.",
+      "contactEmail": "mech@srkrec.ac.in",
+      "alternateEmail": "hod.mech@srkrec.ac.in"
+    }
+  ],
+  "admissions": {
+    "eapcetCode": "SRKR",
+    "categories": {
+      "categoryA": {
+        "title": "Category-A (Convener Quota - 70% seats)",
+        "eligibility": "Passed 10+2 (Intermediate) with MPC (Mathematics, Physics, Chemistry) and qualified in AP EAPCET.",
+        "admissionProcess": "Conducted by the Andhra Pradesh State Council of Higher Education (APSCHE) through centralized online web counseling.",
+        "counselingSteps": [
+          "Register on the APSCHE EAPCET web counseling portal.",
+          "Complete online certificate verification at assigned helpline centers or online.",
+          "Exercise web options giving 'SRKR' (Bhimavaram) as top preference for your desired branch.",
+          "Check allotment order, download allotment letter, and pay tuition fee via portal if applicable.",
+          "Report in person at SRKR Admissions Cell with original certificates and payment proof before the cutoff date."
+        ]
+      },
+      "categoryB": {
+        "title": "Category-B (Management / NRI Quota - 30% seats)",
+        "eligibility": "Passed 10+2 with minimum 45% aggregate in MPC. Candidates with valid JEE Main or AP EAPCET ranks are given priority; remaining seats filled based on Intermediate marks merit.",
+        "process": "Applications invited through official SRKR notification on www.srkrec.ac.in and verified via APSCHE Category-B portal.",
+        "guidance": "Parents and candidates can visit the Administrative Block Admissions Desk or call the college admissions helpline (+91 9848823332)."
+      },
+      "lateralEntry": {
+        "title": "Lateral Entry (ECET Quota)",
+        "eligibility": "Diploma holders or B.Sc (Mathematics) graduates qualified in AP ECET can enter directly into the 2nd year (3rd semester) of B.Tech.",
+        "percentage": "10% supernumerary seats allocated through AP ECET counseling."
+      },
+      "mtech": {
+        "title": "Postgraduate (M.Tech) Admissions",
+        "eligibility": "Valid GATE or AP PGECET qualification with relevant B.Tech degree."
+      }
+    },
+    "feeStructure": {
+      "btechTuitionGovt": "As fixed by AP Higher Education Regulatory and Monitoring Commission (APHERMC), approx. ₹70,000 - ₹73,000 per annum for Convener Quota.",
+      "scholarshipSchemes": [
+        "Jagananna Vidya Deevena (JVD): 100% tuition fee reimbursement credited to eligible student mothers' accounts for Category-A students.",
+        "Jagananna Vasathi Deevena: Financial assistance for hostel and mess expenses.",
+        "National Scholarship Portal (NSP) schemes for minority and central category candidates."
+      ]
+    },
+    "documentsRequired": [
+      "AP EAPCET Hall Ticket & Rank Card",
+      "Intermediate / 10+2 Marks Memo",
+      "SSC / 10th Class Marks Memo",
+      "Study / Bonafide Certificates from Class 6 to 12",
+      "Transfer Certificate (TC) & Conduct Certificate",
+      "Caste / Community Certificate (for BC, SC, ST, EWS candidates)",
+      "Income Certificate / Ration Card (for fee reimbursement / JVD)",
+      "Aadhaar Card copy of Student and Parents",
+      "Recent passport-sized photographs (6 copies)"
+    ]
+  },
+  "academics": {
+    "regulations": "Autonomous R20 / R23 Regulations following AICTE Model Curriculum and Choice Based Credit System (CBCS).",
+    "creditSystem": "Total of 160 credits required over 4 years for B.Tech degree; Honors and Minors degree tracks available for meritorious students (CGPA >= 7.5).",
+    "attendanceRules": {
+      "mandatoryPercentage": 75,
+      "condonationRange": "65% to 74%",
+      "condonationCondition": "Permitted only on genuine medical grounds certified by the college medical officer and recommended by HOD upon paying the prescribed Condonation Fee.",
+      "detentionPolicy": "Students with less than 65% aggregate attendance are strictly DETAINED for that semester and must repeat the semester in the subsequent academic year."
+    },
+    "evaluationScheme": {
+      "internalCIE": "30 or 40 marks (Continuous Internal Evaluation: 2 mid examinations, objective quizzes, assignment/coding assignments)",
+      "semesterSEE": "70 or 60 marks (Semester End Examinations conducted autonomously by the Examination Cell)",
+      "passCriteria": "Minimum 35% in SEE and 40% aggregate in CIE + SEE combined."
+    },
+    "examCellServices": [
+      "Semester End Examination schedules and hall ticket issuance",
+      "Consolidated Grade Cards & Provisional Certificates",
+      "Revaluation / Recounting application processing (within 10 days of results declaration)",
+      "Official Transcripts for higher education / WES evaluation",
+      "Duplicate grade memos and certificate verification"
+    ]
+  },
+  "placements": {
+    "overview": "SRKR Engineering College has one of the most prolific placement records in South India, with over 1,500+ job offers generated every academic year.",
+    "dean": "Dr. K. R. Satyanarayana (Dean, Training & Placement Cell)",
+    "highestPackage": "₹44 LPA (Offered by Palo Alto Networks / Amazon)",
+    "averagePackage": "₹5.50 - ₹6.50 LPA",
+    "annualOffers": "1,500+ offers across 80+ visiting multinational and domestic enterprises",
+    "topRecruiters": [
+      "Amazon",
+      "Cisco",
+      "Palo Alto Networks",
+      "TCS (Digital & Ninja)",
+      "Infosys",
+      "Cognizant",
+      "Wipro",
+      "Tech Mahindra",
+      "Capgemini",
+      "Virtusa",
+      "Mindtree",
+      "Hyundai Mobis",
+      "L&T Technology Services",
+      "Hexaware",
+      "Accenture",
+      "Modak Analytics",
+      "ValueLabs",
+      "Efftronics"
+    ],
+    "trainingInitiatives": [
+      "Campus Recruitment Training (CRT) starting from 2nd year",
+      "Full stack development, Data Structures & Algorithms bootcamps",
+      "Aptitude, quantitative, reasoning, and verbal masterclasses",
+      "Mock technical interviews and Group Discussions led by alumni",
+      "Hackathons, Coding Contests on HackerRank, LeetCode, CodeChef"
+    ],
+    "contact": {
+      "email": "dean.placements@srkrec.ac.in",
+      "phone": "+91 9704195376, +91 9563544999",
+      "corporateDesk": "corporaterelations@srkrec.ac.in"
+    }
+  },
+  "campusFacilities": {
+    "landmarks": [
+      {
+        "id": "main_gate",
+        "name": "Main Entrance Gate & Security Cabin",
+        "zone": "North Entrance",
+        "description": "Primary college entry gate on SRKR Marg, China Amiram. Features security reception for visitor passes, identity card verification, and campus fleet bus bay."
+      },
+      {
+        "id": "admin_block",
+        "name": "Central Administrative Block",
+        "zone": "Central Campus",
+        "description": "Hub of college administration. Ground floor houses Admissions Counter, Accounts Wing, and Scholarship/JVD Section. 1st floor houses Principal's Chambers, Director's Office, and Room 104 (ICC / Women Protection Cell). Working Hours: 9:00 AM – 5:00 PM (Mon-Sat, Lunch: 1-2 PM, Closed on 2nd Saturdays & Sundays). Reception Phone: 08816-223332 / 08816-229377."
+      },
+      {
+        "id": "coe_exam_cell",
+        "name": "Autonomous Examination Cell (Silver Jubilee Building, 1st Floor)",
+        "zone": "Silver Jubilee Building (1st Floor)",
+        "description": "Located on the 1st floor of the Silver Jubilee Building. Led by Controller of Examinations Dr. M. Siva Krishnam Raju. Manages semester-end examinations, revaluation processing, provisional grade cards, and official transcripts (Official Portal: srkrexams.in | Phone: 08816-223332, 08816-229377)."
+      },
+      {
+        "id": "tp_cell",
+        "name": "Training & Placement (T&P) Cell (Silver Jubilee Building, Ground Floor)",
+        "zone": "Silver Jubilee Building (Ground Floor)",
+        "description": "Located on the ground floor of the Silver Jubilee Building. Led by Dean Placements Dr. K. R. Satyanarayana. Houses campus recruitment interview suites, corporate relations offices, and modern computer assessment testing centers (Phone: +91 9704195376, 08816-223332 | Email: dean.placements@srkrec.ac.in)."
+      },
+      {
+        "id": "alumni_office",
+        "name": "Alumni Association Office (AICTE IDEA Lab, 1st Floor)",
+        "zone": "AICTE IDEA Lab (1st Floor)",
+        "description": "Located on the 1st floor of the AICTE IDEA Lab. Headed by Dean of Student Affairs & Alumni Dr. G. Harish Kumar Varma and Coordinator Dr. V. K. Viswanadha Raju. Coordinates the global alumni network, guest lectures, student mentorship, and campus visits (Email: alumni@srkrec.ac.in | Phone: +91 9848823332, 08816-223332)."
+      },
+      {
+        "id": "central_library",
+        "name": "Central Library & Digital Knowledge Centre",
+        "zone": "Academic Zone",
+        "description": "Multi-story air-conditioned complex spanning 4,000+ sq. meters with 1.1 Lakh+ volumes, Digital Learning Lab, IEEE Xplore, ScienceDirect, and quiet study halls (Open 8 AM - 8 PM)."
+      },
+      {
+        "id": "campus_auditorium",
+        "name": "Campus Open Auditorium & Indoor Seminar Halls",
+        "zone": "Cultural & Events Wing",
+        "description": "Main open auditorium and air-conditioned seminar halls for cultural festivals (NIPUNA, SANKETHA), annual conventions, national workshops, and technical symposiums."
+      },
+      {
+        "id": "aicte_idea_lab",
+        "name": "AICTE IDEA Lab & MSME Incubation Centre",
+        "zone": "Innovation Wing",
+        "description": "Advanced multidisciplinary fabrication laboratory for 3D printing, laser cutting, robotics prototyping, and student startups. (The 1st floor houses the Alumni Association Office)."
+      },
+      {
+        "id": "cse_it_block",
+        "name": "Computer Science & Emerging Technologies Block",
+        "zone": "North Academic Quad",
+        "description": "Houses CSE, AI&DS, AIML, CSBS, and IT departments with high-performance computing labs, AI/ML GPU workstations, and campus server room."
+      },
+      {
+        "id": "ece_eee_block",
+        "name": "Electronics & Electrical Engineering Complex",
+        "zone": "West Academic Quad",
+        "description": "Houses ECE and EEE departments with state-of-the-art VLSI design suites, Embedded Systems lab, IoT testbeds, Power Electronics, and Renewable Energy facilities."
+      },
+      {
+        "id": "mech_civil_block",
+        "name": "Mechanical & Civil Engineering Blocks & Heavy Labs",
+        "zone": "South Academic Quad",
+        "description": "Houses Mechanical and Civil engineering departments, CAD/CAM/CAE suites, 3D printing lab, CNC machines, foundry and smithy workshops, Soil Mechanics, and Surveying labs."
+      },
+      {
+        "id": "bsh_mba_block",
+        "name": "Basic Sciences, Humanities & Management Block",
+        "zone": "Central Academic Quad",
+        "description": "Houses Mathematics, Physics, Chemistry, English Communication skills multimedia labs, and MBA department lecture galleries."
+      },
+      {
+        "id": "rd_incubator",
+        "name": "R&D Centre, Geospatial Centre (GIC) & MSME Incubator",
+        "zone": "Innovation Wing",
+        "description": "Houses Geospatial Information Centre (collaborating with ISRO/DST), Technology Centre, and Institution's Innovation Council (IIC) prototyping space."
+      },
+      {
+        "id": "boys_hostels",
+        "name": "Boys Residential Hostels (Blocks 1, 2 & 3)",
+        "zone": "Residential Campus Zone",
+        "description": "Accommodates 1,200+ students across modern blocks with RO drinking water, Wi-Fi, solar hot water, study lounges, sports courts, and resident wardens."
+      },
+      {
+        "id": "girls_hostels",
+        "name": "Girls Residential Hostel Compound",
+        "zone": "Secure Enclosed Campus Zone",
+        "description": "Accommodates 1,000+ female students inside a high-security perimeter with biometric access, resident lady wardens, reading halls, cafeteria, and dispensary access."
+      },
+      {
+        "id": "sports_complex",
+        "name": "Sports Stadium, Indoor Badminton Arena & Gymnasium",
+        "zone": "Recreation Zone",
+        "description": "Full-size cricket ground, 400m athletic track, football field, outdoor basketball & volleyball courts, indoor wooden badminton courts, and modern gym."
+      },
+      {
+        "id": "amenities_canteen",
+        "name": "Central Canteen, Dispensary Health Centre & Bank/ATM",
+        "zone": "Student Amenities",
+        "description": "Spacious hygienic cafeteria serving South Indian food, campus medical dispensary with full-time doctor and 24x7 ambulance, and Union Bank of India branch with ATM."
+      }
+    ],
+    "library": {
+      "name": "Central Library & Digital Knowledge Centre",
+      "area": "Over 25,000 sq. ft. air-conditioned reading halls",
+      "collection": "100,000+ volumes, 20,000+ titles, print national & international journals",
+      "digitalResources": "IEEE Xplore, ScienceDirect, Springer, DELNET, NPTEL local video server",
+      "hours": "8:00 AM to 8:00 PM on all working days"
+    },
+    "hostels": {
+      "boysHostel": {
+        "capacity": "1,200+ students across modern blocks",
+        "facilities": "Wi-Fi enabled, hygienic solar-powered water heating, RO drinking water, reading rooms, gym, 24/7 security & CCTV surveillance",
+        "chiefWarden": "Senior Faculty Warden (+91 8816 223332)"
+      },
+      "girlsHostel": {
+        "capacity": "1,000+ students inside a secure, monitored campus compound",
+        "facilities": "Full-time resident lady wardens, biometric entry, dispensary, indoor games, study hall, cafeteria",
+        "chiefWarden": "Senior Lady Warden (+91 8816 223332)"
+      }
+    },
+    "transport": {
+      "details": "College operates a fleet of 50+ luxury buses covering Bhimavaram town and surrounding regions including Tanuku, Palakollu, Tadepalligudem, Narsapur, Akividu, Veeravasaram, and Maruteru.",
+      "busPass": "Issued at the transport office near Main Gate at the commencement of each semester."
+    },
+    "sports": {
+      "facilities": "Full-size cricket ground, 400m athletic track, football pitch, outdoor basketball courts, volleyball courts, indoor badminton stadium, gymnasium, table tennis."
+    },
+    "healthCenter": {
+      "description": "On-campus dispensary with full-time medical officer and nursing staff, first-aid support, and ambulance on standby 24/7."
+    },
+    "bankAndAtm": "Union Bank of India (formerly Andhra Bank) branch with 24/7 ATM facility located on campus."
+  },
+  "researchAndInnovation": {
+    "gic": "Geospatial Information Centre (GIC) collaborating with ISRO, DST, and state government for remote sensing and GIS mapping.",
+    "iic": "Institution's Innovation Council (IIC) approved by Ministry of Education & MSME Business Incubator.",
+    "technologyCentre": "State-of-the-art incubation and prototyping labs in IoT, robotics, drone technology, and composites."
+  },
+  "eventsAndClubs": {
+    "fests": [
+      {
+        "name": "NIPUNA",
+        "type": "National Level Technical Symposium",
+        "description": "Flagship annual festival featuring paper presentations, project expos, hackathons, robotics challenges, and coding competitions attracting students from across India."
+      },
+      {
+        "name": "SANKETHA",
+        "type": "Departmental Technical & Cultural Symposium",
+        "description": "Branch-specific technical fest organized by student associations."
+      },
+      {
+        "name": "Annual Day & Sports Meet",
+        "description": "Grand cultural celebrations, sports competitions, and academic excellence awards."
+      }
+    ],
+    "clubs": [
+      "CSI (Computer Society of India) Student Branch",
+      "IEEE Student Branch",
+      "ACM Student Chapter",
+      "ISTE (Indian Society for Technical Education) Chapter",
+      "SAE India Collegiate Club (Mechanical)",
+      "SRKR Coding Club & Google Developer Student Clubs (GDSC)",
+      "NSS (National Service Scheme) & NCC Units",
+      "Fine Arts & Literary Club"
+    ]
+  },
+  "faq": [
+    {
+      "q": "What is the EAPCET counseling code for SRKR Engineering College?",
+      "a": "The AP EAPCET counseling code for SRKR Engineering College is **SRKR**."
+    },
+    {
+      "q": "Is SRKR Engineering College autonomous?",
+      "a": "Yes, SRKR is an Autonomous institution affiliated with JNTUK Kakinada and accredited with NAAC Grade 'A+' (CGPA 3.42) and NBA accreditation for its core UG programs."
+    },
+    {
+      "q": "What is the attendance criteria to appear for semester exams?",
+      "a": "A minimum of 75% aggregate attendance is mandatory. Condonation between 65% and 74% may be granted strictly on valid medical grounds with a prescribed fee. Students with less than 65% attendance are detained."
+    },
+    {
+      "q": "How can I apply for Category-B / Management seats?",
+      "a": "Category-B admissions open after official notification following intermediate results. Candidates can apply online via the APSCHE Category-B portal or approach the SRKR Admissions Desk at China Amiram, Bhimavaram with 10+2 marks memos and rank cards."
+    },
+    {
+      "q": "What was the highest salary package offered in placements?",
+      "a": "The highest package offered to SRKR students is ₹44 LPA by Palo Alto Networks and Amazon. The average package across branches is approximately ₹5.5 to ₹6.5 LPA."
+    },
+    {
+      "q": "Are there hostel facilities for outstation students?",
+      "a": "Yes, separate secure hostels for boys and girls with RO water, solar hot water, high-speed Wi-Fi, hygienic food mess, 24/7 security, and resident wardens are available."
+    },
+    {
+      "q": "How do I get my official transcripts or degree certificates?",
+      "a": "Transcripts and provisional certificates are processed through the Controller of Examinations (COE) office. You can submit the transcript requisition form along with required fee receipts at the Exam Cell or apply via the official exam portal."
+    }
+  ]
+}

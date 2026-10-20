@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRKR Engineering College - AI Assistant</title>
+  <link rel="icon" type="image/png" href="./assets/srkr-logo.png">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <img src="./assets/srkr-logo.png" alt="SRKR Official Seal" class="college-logo">
+      <div class="brand-info">
+        <h1><a href="https://www.srkrec.ac.in" target="_blank" rel="noopener noreferrer">SRKR Engineering College (Autonomous)</a></h1>
+        <div class="college-meta">
+          <span>Bhimavaram, AP</span>
+          <span>•</span>
+          <span class="badge badge-gold">EAPCET Code: SRKR</span>
+          <span>•</span>
+          <span class="badge badge-outline">NAAC Grade A+</span>
+          <span>•</span>
+          <span class="badge badge-outline">JNTUK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn-header" id="openDesksBtn" title="Official College Desks & Redressal Helpline">
+        <span>🏛️</span> <span>Official Desks</span>
+      </button>
+      <button class="btn-header" id="openDeptsBtn" title="Academic Departments & HODs">
+        <span>📚</span> <span>Departments</span>
+      </button>
+      <button class="btn-header" id="openCampusBtn" title="Campus Map & Travel Directions">
+        <span>📍</span> <span>Campus Guide</span>
+      </button>
+      <button class="btn-header" id="exportChatBtn" title="Export Chat Transcript">
+        <span>📥</span> <span>Export</span>
+      </button>
+      <button class="btn-header" id="clearChatBtn" title="Clear Conversation">
+        <span>🗑️</span>
+      </button>
+      <button class="btn-header" id="themeToggleBtn" title="Toggle Dark/Light Mode">
+        🌙
+      </button>
+      <button class="btn-header btn-header-primary" id="openSettingsBtn" title="Configure AI Settings">
+        ⚙️
+      </button>
+    </div>
+  </header>
+
+  <!-- Stakeholder Role Selector Bar -->
+  <nav class="stakeholder-bar" aria-label="Stakeholder Mode Selector">
+    <span class="stakeholder-label">Stakeholder Perspective:</span>
+    <div class="stakeholder-pills">
+      <button class="stakeholder-pill active" data-stakeholder="general">
+        <span>🎓</span> General / All
+      </button>
+      <button class="stakeholder-pill" data-stakeholder="student">
+        <span>🎒</span> Student
+      </button>
+      <button class="stakeholder-pill" data-stakeholder="parent">
+        <span>👨‍👩‍👦</span> Parent
+      </button>
+      <button class="stakeholder-pill" data-stakeholder="recruiter">
+        <span>🏢</span> Recruiter / Corporate
+      </button>
+      <button class="stakeholder-pill" data-stakeholder="alumni">
+        <span>🌟</span> Alumni
+      </button>
+      <button class="stakeholder-pill" data-stakeholder="visitor">
+        <span>🏛️</span> Visitor / Guest
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Chat Container -->
+  <main class="main-container">
+    <div class="chat-container">
+      <!-- Scrollable Message Area -->
+      <section class="messages-area" id="chatMessages">
+        
+        <!-- Stakeholder Perspective Top Results Card (Always rendered at the top when selected) -->
+        <div id="stakeholderTopContainer"></div>
+
+        <!-- History Order Indicator -->
+        <div class="history-order-bar" id="historyOrderBar">
+          <span>📜 Conversation History</span>
+          <span class="order-badge">⏱️ Newest First (Descending Order)</span>
+        </div>
+
+        <!-- Stream of Messages in Descending Order (Newest on top) -->
+        <div id="messagesStream" class="messages-stream"></div>
+
+      </section>
+
+      <!-- Chat Input Area -->
+      <footer class="input-container">
+        <div class="active-stakeholder-indicator">
+          <span>Active mode: <strong id="currentStakeholderName">All / General</strong></span>
+          <span>Official Portal: <a href="https://www.srkrec.ac.in" target="_blank" rel="noopener noreferrer" style="color: var(--srkr-maroon); font-weight: 600;">www.srkrec.ac.in</a></span>
+        </div>
+        
+        <div class="input-box-wrapper">
+          <textarea 
+            id="chatInput" 
+            class="chat-input" 
+            rows="1" 
+            placeholder="Ask about admissions, cutoffs, placements, attendance rules, hostels, or office contacts..."
+            aria-label="Ask your question"
+          ></textarea>
+
+          <div class="input-actions">
+            <button id="micBtn" class="btn-icon" title="Voice Input (Speech-to-Text)">
+              🎤
+            </button>
+            <button id="sendBtn" class="btn-send" title="Send Question" disabled>
+              ➤
+            </button>
+          </div>
+        </div>
+        
+        <div class="input-disclaimer">
+          SRKR AI Assistant provides verified institutional guidance. Sensitive disputes and formal grievances are routed directly to official college cells.
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Modal: Official Desks & Redressal Directory -->
+  <div class="modal-overlay" id="desksModal" role="dialog" aria-modal="true" aria-labelledby="desksModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="desksModalTitle">🏛️ Official College Desks & Redressal Directory</h3>
+        <button class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="desksListContainer">
+        <div style="text-align: center; padding: 20px; color: var(--text-muted);">
+          Loading official contact desks...
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-header btn-modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Departments Directory -->
+  <div class="modal-overlay" id="deptsModal" role="dialog" aria-modal="true" aria-labelledby="deptsModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="deptsModalTitle">📚 Academic Departments & HOD Contacts</h3>
+        <button class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="deptsListContainer">
+        <div style="text-align: center; padding: 20px; color: var(--text-muted);">
+          Loading departments...
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-header btn-modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Campus Guide & How to Reach -->
+  <div class="modal-overlay" id="campusModal" role="dialog" aria-modal="true" aria-labelledby="campusModalTitle">
+    <div class="modal-dialog" style="max-width: 800px;">
+      <div class="modal-header">
+        <h3 id="campusModalTitle">📍 SRKR Campus Guide & Complete Landmarks Directory</h3>
+        <button class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="desk-item" style="border-left: 4px solid var(--srkr-maroon); background: var(--bg-tertiary);">
+          <div class="desk-item-header">
+            <div class="desk-item-title">🏫 Campus Address & Transit Overview</div>
+            <span class="badge badge-gold">China Amiram, Bhimavaram</span>
+          </div>
+          <p style="font-size: 0.88rem; margin-bottom: 6px;">
+            <strong>Address:</strong> SRKR Marg, China Amiram, Bhimavaram, West Godavari District, Andhra Pradesh - 534204.
+          </p>
+          <p style="font-size: 0.84rem; color: var(--text-main);">
+            • <strong>Rail Transit:</strong> 3.5 km from Bhimavaram Town (BVRT) & 4.0 km from Bhimavaram Junction (BVRM).<br>
+            • <strong>Bus Transit:</strong> 4.0 km from Bhimavaram APSRTC Central Bus Station.<br>
+            • <strong>Air Transit:</strong> Rajahmundry Airport (RJA) ~80 km | Vijayawada Airport (VGA) ~110 km.
+          </p>
+        </div>
+
+        <div style="margin-top: 6px;">
+          <h4 style="font-size: 0.95rem; color: var(--srkr-maroon); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+            <span>🗺️</span> Complete Campus Landmarks & Buildings Directory
+          </h4>
+          <div class="landmark-grid" id="landmarksContainer">
+            <!-- Dynamically populated with all 14 official campus landmarks -->
+          </div>
+        </div>
+
+        <div class="desk-item" style="margin-top: 10px;">
+          <div class="desk-item-header">
+            <div class="desk-item-title">⏰ Visiting Hours & Security Protocol</div>
+          </div>
+          <p style="font-size: 0.84rem; color: var(--text-main);">
+            • <strong>Administrative Timings:</strong> 9:00 AM to 5:00 PM (Monday to Saturday, closed on 2nd Saturdays & public holidays).<br>
+            • <strong>Security Protocol:</strong> All visitors, parents, and recruiters must register at the Main Security Gate at China Amiram entrance to collect a Visitor Badge.<br>
+            • <strong>Central Line:</strong> 08816-223332 / +91 9848823332 | Principal: principal@srkrec.ac.in
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-header btn-modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Settings & External LLM Configuration -->
+  <div class="modal-overlay" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+    <div class="modal-dialog" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="settingsModalTitle">⚙️ Assistant Settings & AI Configuration</h3>
+        <button class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="apiKeyInput">Google Gemini API Key (Optional)</label>
+          <input 
+            type="password" 
+            id="apiKeyInput" 
+            class="form-control" 
+            placeholder="AIzaSy..." 
+          />
+          <span class="form-help">
+            The assistant works out-of-the-box with the high-precision built-in agent engine. If you want to use Google Gemini for dynamic generative replies grounded on SRKR data, paste your Gemini API key above. It is stored safely in your browser.
+          </span>
+        </div>
+
+        <div class="desk-item" style="margin-top: 10px;">
+          <div class="desk-item-title" style="font-size: 0.85rem; margin-bottom: 4px;">Institutional Safeguards</div>
+          <p style="font-size: 0.78rem; color: var(--text-muted);">
+            Sensitive queries regarding anti-ragging, gender harassment (ICC), detention appeals, or examination revaluation will always trigger verified official contact cards regardless of the LLM provider selected.
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer" style="gap: 8px;">
+        <button id="resetSettingsBtn" class="btn-header">Reset to Default</button>
+        <button id="saveSettingsBtn" class="btn-header btn-header-primary">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/srkrData.js"></script>
+  <script src="./js/agentEngine.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
