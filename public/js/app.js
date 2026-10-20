@@ -274,7 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render results on TOP immediately
     renderStakeholderTopCard(role);
-    renderQuickChips(role);
   }
 
   stakeholderPills.forEach(pill => {
@@ -1120,10 +1119,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initialize: default stakeholder and render initial touch chips safely
+  // Initialize: default stakeholder safely
   try {
     setStakeholder(currentStakeholder || 'general');
-    renderQuickChips(currentStakeholder || 'general');
   } catch (initErr) {
     console.error("Initialization error:", initErr);
   }
