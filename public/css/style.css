@@ -1193,37 +1193,419 @@ body {
   color: var(--srkr-gold);
 }
 
-/* Responsive queries */
-@media (max-width: 768px) {
-  .app-header {
-    padding: 10px 14px;
+/* ==========================================================================
+   Interactive Quick Suggestions Chips Bar
+   ========================================================================== */
+.quick-chips-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 4px 0 6px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
+}
+
+.quick-chips-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-chips-track {
+  display: inline-flex;
+  gap: 8px;
+  padding: 2px 4px;
+}
+
+.quick-chip {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.quick-chip:hover,
+.quick-chip:active {
+  background: var(--srkr-maroon);
+  color: #ffffff;
+  border-color: var(--srkr-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(122, 0, 25, 0.25);
+}
+
+[data-theme="dark"] .quick-chip:hover,
+[data-theme="dark"] .quick-chip:active {
+  background: var(--srkr-maroon-light);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Modal Search Bar Styles
+   ========================================================================== */
+.modal-search-wrapper {
+  padding: 12px 20px 0;
+}
+
+.modal-search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-main);
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.modal-search-input:focus {
+  border-color: var(--srkr-maroon);
+  background: var(--bg-secondary);
+  box-shadow: 0 0 0 3px rgba(122, 0, 25, 0.12);
+}
+
+[data-theme="dark"] .modal-search-input:focus {
+  border-color: var(--srkr-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+/* ==========================================================================
+   Interactive Feedback & Reactions
+   ========================================================================== */
+.btn-feedback {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.15s ease;
+}
+
+.btn-feedback:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-main);
+}
+
+.btn-feedback.active {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--srkr-gold);
+  color: var(--srkr-gold-dark);
+  font-weight: 600;
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 500;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast-notification.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Comprehensive Cross-Device Responsive Layouts
+   ========================================================================== */
+
+/* Tablets & Small Laptops (769px to 1024px) */
+@media (max-width: 1024px) {
+  .chat-container {
+    max-width: 100%;
   }
-  
+
+  .app-header {
+    padding: 10px 16px;
+  }
+
+  .college-logo {
+    width: 48px;
+    height: 48px;
+  }
+
   .brand-info h1 {
-    font-size: 0.98rem;
+    font-size: 1.05rem;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .btn-header {
+    padding: 6px 10px;
+    font-size: 0.82rem;
+  }
+}
+
+/* Mobile Devices (<= 768px) */
+@media (max-width: 768px) {
+  body {
+    height: 100dvh; /* Dynamic viewport height for iOS/Android virtual keyboards */
+  }
+
+  .app-header {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .brand-section {
+    gap: 10px;
+    min-width: 0; /* Allow text truncate */
+  }
+
+  .college-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand-info h1 {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .college-meta {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
-  .btn-header span {
-    display: none;
+  .header-actions {
+    gap: 4px;
+    flex-shrink: 0;
   }
 
+  /* Show icon only on mobile buttons so they never clip or look empty */
+  .btn-header {
+    padding: 7px 8px;
+    font-size: 0.9rem;
+    min-width: 36px;
+    min-height: 36px;
+    justify-content: center;
+  }
+
+  .btn-header .btn-label {
+    display: none !important;
+  }
+
+  .btn-header .btn-icon {
+    display: inline-block;
+    font-size: 1.05rem;
+  }
+
+  /* Stakeholder Bar - Touch scroll */
   .stakeholder-bar {
-    padding: 6px 14px;
+    padding: 6px 12px;
+    gap: 8px;
+    scrollbar-width: none;
   }
 
+  .stakeholder-label {
+    font-size: 0.7rem;
+    display: none; /* Conserve vertical space on mobile */
+  }
+
+  .stakeholder-pills {
+    gap: 6px;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+
+  .stakeholder-pill {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    min-height: 34px;
+    flex-shrink: 0;
+  }
+
+  /* Messages Area */
   .messages-area {
-    padding: 14px 10px;
+    padding: 12px 10px;
+    gap: 14px;
   }
 
   .message-content-wrapper {
-    max-width: 92%;
+    max-width: 95%;
+  }
+
+  .message-bubble {
+    font-size: 0.88rem;
+    padding: 12px 14px;
+  }
+
+  /* Escalation Action Bar: Stack on mobile for large, thumb-friendly touch targets */
+  .escalation-action-bar {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .escalation-action-bar a.btn-contact {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 14px !important;
+    font-size: 0.88rem !important;
+    border-radius: var(--radius-sm);
   }
 
   .hero-stats {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* Sticky Chat Input Bar on Mobile */
+  .input-container {
+    padding: 8px 12px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  .input-box-wrapper {
+    padding: 6px 10px;
+  }
+
+  .chat-input {
+    font-size: 0.95rem; /* Prevents auto-zoom on iOS Safari */
+  }
+
+  .btn-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .btn-send {
+    width: 38px;
+    height: 38px;
+  }
+
+  .input-disclaimer {
+    display: none; /* Save space on small phones */
+  }
+
+  /* Bottom-Sheet Modals on Mobile Phones */
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-dialog {
+    max-width: 100%;
+    max-height: 88vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    animation: slideUpMobile 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes slideUpMobile {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .modal-header {
+    padding: 14px 16px;
+  }
+
+  .modal-header h3 {
+    font-size: 0.98rem;
+  }
+
+  .modal-body {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .modal-footer {
+    padding: 10px 16px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .btn-close {
+    font-size: 1.4rem;
+    padding: 6px;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Very Small Mobile Phones (<= 420px) */
+@media (max-width: 420px) {
+  .college-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-info h1 {
+    font-size: 0.88rem;
+  }
+
+  .meta-separator {
+    display: none;
+  }
+
+  .college-meta .badge:not(.badge-gold) {
+    display: none; /* Keep just EAPCET on tiny screens */
+  }
+
+  .quick-chip {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+}
+
+/* Touch & Gesture Enhancements */
+@media (hover: none) and (pointer: coarse) {
+  .quick-chip,
+  .stakeholder-pill,
+  .btn-header,
+  .btn-msg-action,
+  .btn-feedback {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .quick-chip:active,
+  .stakeholder-pill:active {
+    transform: scale(0.97);
   }
 }

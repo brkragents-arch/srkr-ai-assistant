@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#7a0019">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Official AI Assistant for SRKR Engineering College (Autonomous), Bhimavaram. Guidance on admissions, academics, departments, placements, campus facilities, and official contacts.">
   <title>SRKR Engineering College - AI Assistant</title>
   <link rel="icon" type="image/png" href="./assets/srkr-logo.png">
   <link rel="stylesheet" href="./css/style.css">
@@ -16,37 +20,37 @@
         <h1><a href="https://www.srkrec.ac.in" target="_blank" rel="noopener noreferrer">SRKR Engineering College (Autonomous)</a></h1>
         <div class="college-meta">
           <span>Bhimavaram, AP</span>
-          <span>•</span>
-          <span class="badge badge-gold">EAPCET Code: SRKR</span>
-          <span>•</span>
-          <span class="badge badge-outline">NAAC Grade A+</span>
-          <span>•</span>
+          <span class="meta-separator">•</span>
+          <span class="badge badge-gold">EAPCET: SRKR</span>
+          <span class="meta-separator">•</span>
+          <span class="badge badge-outline">NAAC A+</span>
+          <span class="meta-separator">•</span>
           <span class="badge badge-outline">JNTUK</span>
         </div>
       </div>
     </div>
 
     <div class="header-actions">
-      <button class="btn-header" id="openDesksBtn" title="Official College Desks & Redressal Helpline">
-        <span>🏛️</span> <span>Official Desks</span>
+      <button class="btn-header" id="openDesksBtn" title="Official College Desks & Redressal Helpline" aria-label="Official Desks">
+        <span class="btn-icon">🏛️</span> <span class="btn-label">Official Desks</span>
       </button>
-      <button class="btn-header" id="openDeptsBtn" title="Academic Departments & HODs">
-        <span>📚</span> <span>Departments</span>
+      <button class="btn-header" id="openDeptsBtn" title="Academic Departments & HODs" aria-label="Departments">
+        <span class="btn-icon">📚</span> <span class="btn-label">Departments</span>
       </button>
-      <button class="btn-header" id="openCampusBtn" title="Campus Map & Travel Directions">
-        <span>📍</span> <span>Campus Guide</span>
+      <button class="btn-header" id="openCampusBtn" title="Campus Map & Travel Directions" aria-label="Campus Guide">
+        <span class="btn-icon">📍</span> <span class="btn-label">Campus Guide</span>
       </button>
-      <button class="btn-header" id="exportChatBtn" title="Export Chat Transcript">
-        <span>📥</span> <span>Export</span>
+      <button class="btn-header" id="exportChatBtn" title="Export Chat Transcript" aria-label="Export Chat">
+        <span class="btn-icon">📥</span> <span class="btn-label">Export</span>
       </button>
-      <button class="btn-header" id="clearChatBtn" title="Clear Conversation">
-        <span>🗑️</span>
+      <button class="btn-header" id="clearChatBtn" title="Clear Conversation" aria-label="Clear Chat">
+        <span class="btn-icon">🗑️</span>
       </button>
-      <button class="btn-header" id="themeToggleBtn" title="Toggle Dark/Light Mode">
-        🌙
+      <button class="btn-header" id="themeToggleBtn" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+        <span class="btn-icon">🌙</span>
       </button>
-      <button class="btn-header btn-header-primary" id="openSettingsBtn" title="Configure AI Settings">
-        ⚙️
+      <button class="btn-header btn-header-primary" id="openSettingsBtn" title="Configure AI Settings" aria-label="AI Settings">
+        <span class="btn-icon">⚙️</span>
       </button>
     </div>
   </header>
@@ -98,6 +102,13 @@
 
       <!-- Chat Input Area -->
       <footer class="input-container">
+        <!-- Interactive Quick Suggested Questions Bar (Touch friendly on all devices) -->
+        <div class="quick-chips-wrapper" aria-label="Quick suggested questions">
+          <div class="quick-chips-track" id="quickChipsTrack">
+            <!-- Dynamically populated and interactive -->
+          </div>
+        </div>
+
         <div class="active-stakeholder-indicator">
           <span>Active mode: <strong id="currentStakeholderName">All / General</strong></span>
           <span>Official Portal: <a href="https://www.srkrec.ac.in" target="_blank" rel="noopener noreferrer" style="color: var(--srkr-maroon); font-weight: 600;">www.srkrec.ac.in</a></span>
@@ -113,10 +124,10 @@
           ></textarea>
 
           <div class="input-actions">
-            <button id="micBtn" class="btn-icon" title="Voice Input (Speech-to-Text)">
+            <button id="micBtn" class="btn-icon" title="Voice Input (Speech-to-Text)" aria-label="Voice input">
               🎤
             </button>
-            <button id="sendBtn" class="btn-send" title="Send Question" disabled>
+            <button id="sendBtn" class="btn-send" title="Send Question" aria-label="Send message" disabled>
               ➤
             </button>
           </div>
@@ -136,6 +147,9 @@
         <h3 id="desksModalTitle">🏛️ Official College Desks & Redressal Directory</h3>
         <button class="btn-close" aria-label="Close modal">&times;</button>
       </div>
+      <div class="modal-search-wrapper">
+        <input type="text" id="desksSearchInput" class="modal-search-input" placeholder="🔍 Search official desks, in-charges, phones, or locations..." aria-label="Search official desks">
+      </div>
       <div class="modal-body" id="desksListContainer">
         <div style="text-align: center; padding: 20px; color: var(--text-muted);">
           Loading official contact desks...
@@ -153,6 +167,9 @@
       <div class="modal-header">
         <h3 id="deptsModalTitle">📚 Academic Departments & HOD Contacts</h3>
         <button class="btn-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-search-wrapper">
+        <input type="text" id="deptsSearchInput" class="modal-search-input" placeholder="🔍 Search departments by name, code (e.g., CSE, CSIT, AIDS), or HOD..." aria-label="Search departments">
       </div>
       <div class="modal-body" id="deptsListContainer">
         <div style="text-align: center; padding: 20px; color: var(--text-muted);">
@@ -189,9 +206,12 @@
         </div>
 
         <div style="margin-top: 6px;">
-          <h4 style="font-size: 0.95rem; color: var(--srkr-maroon); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+          <h4 style="font-size: 0.95rem; color: var(--srkr-maroon); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
             <span>🗺️</span> Complete Campus Landmarks & Buildings Directory
           </h4>
+          <div class="modal-search-wrapper" style="margin-bottom: 12px;">
+            <input type="text" id="landmarksSearchInput" class="modal-search-input" placeholder="🔍 Search buildings, zones, landmarks (e.g., Silver Jubilee, IDEA Lab, Sports)..." aria-label="Search campus landmarks">
+          </div>
           <div class="landmark-grid" id="landmarksContainer">
             <!-- Dynamically populated with all 14 official campus landmarks -->
           </div>
@@ -213,6 +233,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Interactive Feedback Toast -->
+  <div id="toastNotification" class="toast-notification" role="status" aria-live="polite"></div>
 
   <!-- Modal: Settings & External LLM Configuration -->
   <div class="modal-overlay" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">

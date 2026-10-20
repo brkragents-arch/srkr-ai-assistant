@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render results on TOP immediately
     renderStakeholderTopCard(role);
+    renderQuickChips(role);
   }
 
   stakeholderPills.forEach(pill => {
@@ -343,10 +344,99 @@ document.addEventListener('DOMContentLoaded', () => {
     return html;
   }
 
-  function speakText(text) {
+  // Quick Suggested Questions for Each Stakeholder Perspective (Interactive Touch Chips)
+  const quickQuestionsByStakeholder = {
+    general: [
+      { label: "🎓 Admissions & Cutoffs", query: "What is the admission procedure, cutoffs, and convener quota?" },
+      { label: "📊 Autonomous COE & Exams", query: "Who is Controller of Examination and how to apply for transcripts?" },
+      { label: "💼 Highest Placement CTC", query: "What are the latest placement records, highest CTC, and top recruiters?" },
+      { label: "📚 Academic Departments", query: "Show all academic departments, HOD names, and emails" },
+      { label: "🏃‍♂️ Physical Director", query: "Who is the Physical Director and contact number?" },
+      { label: "📖 Central Library", query: "Who is the Librarian and central library timings?" },
+      { label: "🧪 AICTE IDEA Lab", query: "Tell me about AICTE IDEA Lab incharge and facilities" },
+      { label: "📍 Campus Landmarks", query: "Show complete campus landmarks and buildings" },
+      { label: "🚌 Bus Routes & Transport", query: "What are the college bus routes, coverage, and pass details?" },
+      { label: "🚨 Anti-Ragging Helpline", query: "Anti-ragging helpline and squad details" },
+      { label: "🕒 Office Timings", query: "What are the administrative office working hours?" }
+    ],
+    student: [
+      { label: "⚠️ Attendance Below 75%", query: "What is the attendance criteria and condonation policy?" },
+      { label: "📜 Official Transcripts", query: "How to apply for official transcripts and grade memo corrections?" },
+      { label: "💻 CS & IT Department", query: "Tell me about CS & IT department HOD, intake and email" },
+      { label: "🏃‍♂️ Sports Trials & PD", query: "Who is the Physical Director and sports facilities?" },
+      { label: "🧪 IDEA Lab Prototyping", query: "Details of AICTE Idea Lab incharge and maker space" },
+      { label: "📖 Digital Library Lab", query: "What are the Central Library timings and e-resources?" },
+      { label: "🎉 NIPUNA Tech Fest", query: "Tell me about NIPUNA symposium and student technical clubs" },
+      { label: "💼 Placement Training", query: "When does campus placement training start and who is Dean Placements?" },
+      { label: "⚖️ Grievance Redressal", query: "How can a student submit a grievance to SGRC?" }
+    ],
+    parent: [
+      { label: "💰 Tuition Fee & JVD", query: "What is the B.Tech tuition fee and Jagananna Vidya Deevena (JVD) process?" },
+      { label: "🏠 Hostels & Food Safety", query: "Are there safe hostel facilities and hygienic mess for boys and girls?" },
+      { label: "🛡️ Campus Discipline", query: "What measures are in place for campus safety and anti-ragging?" },
+      { label: "📞 Principal Reception", query: "Contact number for Principal's Office reception" },
+      { label: "🕒 Administrative Timings", query: "What are the administrative office working hours?" },
+      { label: "🎓 Category-B Management Seats", query: "How to get Category B management seat and eligibility?" }
+    ],
+    recruiter: [
+      { label: "💼 Dean Placements Contact", query: "We want to hire students from SRKR for software engineer roles" },
+      { label: "📈 Placement Statistics", query: "What are the placement statistics and highest package?" },
+      { label: "🏢 Host Campus Drive", query: "How can our company register for campus recruitment drive?" },
+      { label: "💻 CSE & CSIT Branches", query: "What are the computing branches and student intakes?" },
+      { label: "🧪 IDEA Lab Innovations", query: "Tell me about AICTE IDEA Lab incharge and student prototypes" }
+    ],
+    alumni: [
+      { label: "🌟 Alumni Office Location", query: "Where is the Alumni Office located and contact details?" },
+      { label: "📜 Official Transcripts / WES", query: "How can alumni get sealed transcripts for WES or foreign universities?" },
+      { label: "🌐 Official Alumni Portal", query: "What is the official SRKR Alumni portal link?" },
+      { label: "📞 Alumni Coordinator", query: "Who are the Alumni coordinators and contact numbers?" },
+      { label: "🎓 Autonomous Exam Cell", query: "Check the name and contact details of controller of examination" }
+    ],
+    visitor: [
+      { label: "📍 Campus Landmarks Directory", query: "Show complete campus landmarks and buildings" },
+      { label: "⏰ Visiting Hours & Gate Protocol", query: "What are visitor security procedures and office hours?" },
+      { label: "🚆 How to Reach from Station", query: "How to reach SRKR Engineering College from Bhimavaram railway station?" },
+      { label: "🏦 On-Campus Bank & ATM", query: "Is there a bank and ATM facility on campus?" },
+      { label: "📞 Reception Desk Helpline", query: "Contact number for Principal's Office reception" }
+    ]
+  };
+
+  function renderQuickChips(stakeholderKey) {
+    const track = document.getElementById('quickChipsTrack');
+    if (!track) return;
+    const chips = quickQuestionsByStakeholder[stakeholderKey] || quickQuestionsByStakeholder.general;
+    track.innerHTML = chips.map(c => `
+      <button class="quick-chip" type="button" data-query="${c.query.replace(/"/g, '&quot;')}">
+        ${c.label}
+      </button>
+    `).join('');
+
+    track.querySelectorAll('.quick-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const query = btn.dataset.query;
+        if (query) {
+          sendMessage(query);
+        }
+      });
+    });
+  }
+
+  // Interactive Toast Notification
+  function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('active');
+    setTimeout(() => {
+      toast.classList.remove('active');
+    }, 2500);
+  }
+
+  function speakText(text, btnElement) {
     if (!synth) return;
     if (synth.speaking) {
       synth.cancel();
+      if (btnElement) btnElement.innerHTML = `🔊 Listen`;
       return;
     }
     const cleanText = text
@@ -358,6 +448,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentUtterance = new SpeechSynthesisUtterance(cleanText);
     currentUtterance.rate = 1.0;
+    if (btnElement) {
+      btnElement.innerHTML = `⏹️ Stop`;
+      currentUtterance.onend = () => { btnElement.innerHTML = `🔊 Listen`; };
+      currentUtterance.onerror = () => { btnElement.innerHTML = `🔊 Listen`; };
+    }
     synth.speak(currentUtterance);
   }
 
@@ -365,6 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navigator.clipboard.writeText(text).then(() => {
       const originalText = btnElement.innerHTML;
       btnElement.innerHTML = '✓ Copied';
+      showToast('Response copied to clipboard! 📋');
       setTimeout(() => { btnElement.innerHTML = originalText; }, 2000);
     });
   }
@@ -481,13 +577,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const listenBtn = document.createElement('button');
     listenBtn.className = 'btn-msg-action';
     listenBtn.innerHTML = `🔊 Listen`;
-    listenBtn.addEventListener('click', () => speakText(data.response || rawText));
+    listenBtn.addEventListener('click', () => speakText(data.response || rawText, listenBtn));
+
+    const thumbUpBtn = document.createElement('button');
+    thumbUpBtn.className = 'btn-feedback';
+    thumbUpBtn.title = 'Helpful response';
+    thumbUpBtn.innerHTML = `👍`;
+    thumbUpBtn.addEventListener('click', () => {
+      thumbUpBtn.classList.toggle('active');
+      thumbDownBtn.classList.remove('active');
+      showToast('Thank you for your feedback! 👍');
+    });
+
+    const thumbDownBtn = document.createElement('button');
+    thumbDownBtn.className = 'btn-feedback';
+    thumbDownBtn.title = 'Needs improvement';
+    thumbDownBtn.innerHTML = `👎`;
+    thumbDownBtn.addEventListener('click', () => {
+      thumbDownBtn.classList.toggle('active');
+      thumbUpBtn.classList.remove('active');
+      showToast('Thanks for your feedback. We will refine this guidance.');
+    });
 
     const timeStamp = document.createElement('span');
     timeStamp.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     metaBar.appendChild(copyBtn);
     metaBar.appendChild(listenBtn);
+    metaBar.appendChild(thumbUpBtn);
+    metaBar.appendChild(thumbDownBtn);
     metaBar.appendChild(timeStamp);
 
     contentWrapper.appendChild(bubble);
@@ -902,10 +1020,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const key = apiKeyInput.value.trim();
     if (key) {
       localStorage.setItem('srkr_gemini_api_key', key);
-      alert('Gemini API Key saved successfully! The assistant will utilize Gemini for conversational completion grounded on SRKR data.');
+      showToast('Gemini API Key saved successfully! ⚙️');
     } else {
       localStorage.removeItem('srkr_gemini_api_key');
-      alert('API Key cleared. The assistant will run in local high-precision built-in agent mode.');
+      showToast('API Key cleared. Running in local built-in mode.');
     }
     closeModal(settingsModal);
   });
@@ -913,9 +1031,59 @@ document.addEventListener('DOMContentLoaded', () => {
   resetSettingsBtn.addEventListener('click', () => {
     localStorage.removeItem('srkr_gemini_api_key');
     if (apiKeyInput) apiKeyInput.value = '';
-    alert('Settings reset to default built-in agent mode.');
+    showToast('Settings reset to default built-in mode.');
   });
 
-  // Initialize: default stakeholder
+  // Modal Interactive Real-time Search Handlers
+  const desksSearchInput = document.getElementById('desksSearchInput');
+  if (desksSearchInput) {
+    desksSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const container = document.getElementById('desksListContainer');
+      const items = container.querySelectorAll('.desk-item');
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+  }
+
+  const deptsSearchInput = document.getElementById('deptsSearchInput');
+  if (deptsSearchInput) {
+    deptsSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const container = document.getElementById('deptsListContainer');
+      const items = container.querySelectorAll('.desk-item');
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+  }
+
+  const landmarksSearchInput = document.getElementById('landmarksSearchInput');
+  if (landmarksSearchInput) {
+    landmarksSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const container = document.getElementById('landmarksContainer');
+      const items = container.querySelectorAll('.landmark-card');
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+  }
+
+  // Keyboard Accessibility: Escape key closes any active modal
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+        closeModal(modal);
+      });
+    }
+  });
+
+  // Initialize: default stakeholder and render initial touch chips
   setStakeholder(currentStakeholder);
+  renderQuickChips(currentStakeholder);
 });
