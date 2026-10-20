@@ -31,12 +31,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveSettingsBtn = document.getElementById('saveSettingsBtn');
   const resetSettingsBtn = document.getElementById('resetSettingsBtn');
 
+  // Safe Storage Helpers (Handles mobile incognito / strict privacy mode)
+  function safeGetItem(key, fallback = null) {
+    try {
+      return localStorage.getItem(key) || fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function safeSetItem(key, val) {
+    try {
+      localStorage.setItem(key, val);
+    } catch (e) {
+      // ignore in private browsing mode
+    }
+  }
+
+  function safeRemoveItem(key) {
+    try {
+      localStorage.removeItem(key);
+    } catch (e) {
+      // ignore
+    }
+  }
+
   // State
-  let currentStakeholder = localStorage.getItem('srkr_stakeholder') || 'general';
+  let currentStakeholder = safeGetItem('srkr_stakeholder', 'general');
   let conversationHistory = [];
   let isListening = false;
   let recognition = null;
-  let synth = window.speechSynthesis;
+  let synth = null;
+  try {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      synth = window.speechSynthesis;
+    }
+  } catch (e) {
+    synth = null;
+  }
   let currentUtterance = null;
   let activeTurnContainer = null;
 
@@ -217,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set Stakeholder perspective
   function setStakeholder(role) {
     currentStakeholder = role;
-    localStorage.setItem('srkr_stakeholder', role);
+    safeSetItem('srkr_stakeholder', role);
 
     stakeholderPills.forEach(pill => {
       if (pill.dataset.stakeholder === role) {
@@ -251,26 +283,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Speech Recognition
-  if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+  // Speech Recognition (Safe Initialization for Mobile Browsers)
+  try {
     const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-    recognition = new SpeechRec();
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = 'en-US';
+    if (SpeechRec) {
+      recognition = new SpeechRec();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
 
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      chatInput.value = transcript;
-      chatInput.dispatchEvent(new Event('input'));
-      stopListening();
-      sendMessage(transcript);
-    };
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        chatInput.value = transcript;
+        chatInput.dispatchEvent(new Event('input'));
+        stopListening();
+        sendMessage(transcript);
+      };
 
-    recognition.onerror = () => stopListening();
-    recognition.onend = () => stopListening();
-  } else {
-    micBtn.style.display = 'none';
+      recognition.onerror = () => stopListening();
+      recognition.onend = () => stopListening();
+    } else if (micBtn) {
+      micBtn.style.display = 'none';
+    }
+  } catch (speechErr) {
+    console.warn('Speech recognition not available on this mobile device/browser:', speechErr);
+    if (micBtn) micBtn.style.display = 'none';
   }
 
   function startListening() {
@@ -710,7 +747,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smoothly ensure user views the newest interaction at top
     chatMessages.scrollTop = 0;
 
-    const storedKey = localStorage.getItem('srkr_gemini_api_key') || null;
+    const storedKey = safeGetItem('srkr_gemini_api_key') || null;
 
     try {
       let data = null;
@@ -825,7 +862,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Theme Toggle
-  const savedTheme = localStorage.getItem('srkr_theme') || 'light';
+  const savedTheme = safeGetItem('srkr_theme', 'light');
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
 
@@ -833,7 +870,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('srkr_theme', next);
+    safeSetItem('srkr_theme', next);
     updateThemeIcon(next);
   });
 
@@ -1011,7 +1048,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Settings Modal
   openSettingsBtn.addEventListener('click', () => {
     if (apiKeyInput) {
-      apiKeyInput.value = localStorage.getItem('srkr_gemini_api_key') || '';
+      apiKeyInput.value = safeGetItem('srkr_gemini_api_key', '');
     }
     openModal(settingsModal);
   });
@@ -1019,17 +1056,17 @@ document.addEventListener('DOMContentLoaded', () => {
   saveSettingsBtn.addEventListener('click', () => {
     const key = apiKeyInput.value.trim();
     if (key) {
-      localStorage.setItem('srkr_gemini_api_key', key);
+      safeSetItem('srkr_gemini_api_key', key);
       showToast('Gemini API Key saved successfully! ⚙️');
     } else {
-      localStorage.removeItem('srkr_gemini_api_key');
+      safeRemoveItem('srkr_gemini_api_key');
       showToast('API Key cleared. Running in local built-in mode.');
     }
     closeModal(settingsModal);
   });
 
   resetSettingsBtn.addEventListener('click', () => {
-    localStorage.removeItem('srkr_gemini_api_key');
+    safeRemoveItem('srkr_gemini_api_key');
     if (apiKeyInput) apiKeyInput.value = '';
     showToast('Settings reset to default built-in mode.');
   });
@@ -1083,7 +1120,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initialize: default stakeholder and render initial touch chips
-  setStakeholder(currentStakeholder);
-  renderQuickChips(currentStakeholder);
+  // Initialize: default stakeholder and render initial touch chips safely
+  try {
+    setStakeholder(currentStakeholder || 'general');
+    renderQuickChips(currentStakeholder || 'general');
+  } catch (initErr) {
+    console.error("Initialization error:", initErr);
+  }
 });
